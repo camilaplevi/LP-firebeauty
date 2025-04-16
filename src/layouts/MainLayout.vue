@@ -1,102 +1,58 @@
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const titleText = ref('A beleza\ndo agora!')
+    const subTitleText = ref('Encontre os melhores profissionais de estética,\nagende com um toque, e compartilhe sua\nessência com o mundo.')
+
+    const nome = ref('')
+    const whatsapp = ref('')
+
+    return {
+      titleText,
+      subTitleText,
+      nome,
+      whatsapp
+    }
+  }
+})
+
+</script>
+
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
+    <q-header elevated class="bg-white" style="height: 70px;">
+      <div class="row justify-center items-center" style="height: 100%;">
+        <img src="/src/assets/Logo horizontal preta 4.png" alt="Logo FireBeauty"
+          style="width: 141px !important; height: 49px !important; margin: 0 0 10px 0;">
+      </div>
     </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
     <q-page-container>
-      <router-view />
+      <q-page class="no-padding">
+        <div class="hero-section relative-position" style="height: 100vh;">
+          <img src="/src/assets/Rectangle 3.png" alt="Background" style="width: 100%; object-fit: cover;">
+        </div>
+        <div class="absolute-left text-left text-white" style="width: 80%; max-width: 600px;">
+          <h1 class="text-h4"
+            style="font-family: 'IvyMode'; font-size: 30px; font-size: 70px; margin: 0; padding: 40px 0 40px 100px; line-height: 60px; white-space: pre-line;">
+            {{ titleText }}
+          </h1>
+          <p class="text-subtitle1"
+            style="font-family: 'Poppins'; margin-left: 100px; white-space: pre-line; font-weight: 400; line-height: 26px;">
+            {{ subTitleText }}
+          </p>
+          <q-card class="q-pa-md" style="background-color: #D9D9D9; border-radius: 18px; margin: 60px 0 0 100px; ">
+            <q-input filled v-model="nome" label="Seu nome:" class="q-mb-md"
+              style="background-color: #F5F5F5; border-radius: 8px; border: 1px solid var(--Bege-luxuoso, #AD9B8E);" />
+            <q-input filled v-model="whatsapp" label="Seu WhatsApp:" mask="(##) #####-####"
+              style="background-color: #F5F5F5; border-radius: 8px; border: 1px solid var(--Bege-luxuoso, #AD9B8E);" />
+            <q-btn label="Enviar" class="q-mt-md full-width"
+              style="background-color: #FFA600; color: #322D29; height: 45px; border-radius: 32.5px;" />
+          </q-card>
+        </div>
+
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
-
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
-const leftDrawerOpen = ref(false);
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
-</script>
