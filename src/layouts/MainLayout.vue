@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ref, defineComponent, computed } from 'vue';
+import { ref, defineComponent, computed, onMounted } from 'vue';
 import { cardIcons } from 'src/assets/icons/CardsIcons'
 
 export default defineComponent({
@@ -39,6 +39,23 @@ export default defineComponent({
         icon: cardIcons.star
       }
     ])
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.info-card');
+        cards.forEach(card => observer.observe(card));
+      }, 100);
+    });
 
     const nome = ref('')
     const whatsapp = ref('')
@@ -187,7 +204,6 @@ export default defineComponent({
 
     @media (min-width: 769px) {
       height: 630px;
-      /* 600px */
     }
   }
 
@@ -202,10 +218,9 @@ export default defineComponent({
 
     @media (min-width: 769px) {
       left: 8%;
-      width: 37.5rem;
-      /* 600px */
-      padding-top: 5rem;
-      /* 80px */
+      width: 600px;
+      padding-top: 80px;
+
     }
   }
 
@@ -352,17 +367,39 @@ export default defineComponent({
   border: 3px solid transparent;
   border-radius: 16px;
   background: linear-gradient(white, #FFF6EF) padding-box,
-    linear-gradient(45deg, #AD9B8E, #E9DFD7, #AD9B8E, #E9DFD7) border-box;
+    linear-gradient(0deg, #E9DFD7, #AD9B8E, #E9DFD7, #AD9B8E) border-box;
+  background-size: 100% 100%, 400% 400%;
+  background-position: center, 0% 50%;
+  background-repeat: no-repeat;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 
   &:hover {
     transform: translateY(-4px);
   }
 
+  &.animate {
+    animation: borderFlow 4s ease-in-out forwards;
+  }
+
   @media (min-width: 769px) {
     width: 212px;
     height: 204px;
+  }
+
+
+  @keyframes borderFlow {
+    0% {
+      background-position: center, 0% 50%;
+      background: linear-gradient(white, #FFF6EF) padding-box,
+        linear-gradient(0deg, #E9DFD7, #AD9B8E, #E9DFD7, #AD9B8E) border-box;
+    }
+
+    100% {
+      background-position: center, 100% 50%;
+      background: linear-gradient(white, #FFF6EF) padding-box,
+        linear-gradient(45deg, #AD9B8E, #E9DFD7, #AD9B8E, #E9DFD7) border-box;
+    }
   }
 
   .card-content {
