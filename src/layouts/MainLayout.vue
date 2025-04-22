@@ -186,7 +186,7 @@ export default defineComponent({
     object-fit: cover;
 
     @media (min-width: 769px) {
-      height: 600px;
+      height: 630px;
       /* 600px */
     }
   }
@@ -201,7 +201,7 @@ export default defineComponent({
     padding: 35px 20px;
 
     @media (min-width: 769px) {
-      left: 10%;
+      left: 8%;
       width: 37.5rem;
       /* 600px */
       padding-top: 5rem;
@@ -441,7 +441,7 @@ export default defineComponent({
     margin: 0;
 
     @media (min-width: 769px) {
-      width: 850px;
+      width: auto;
     }
   }
 }
