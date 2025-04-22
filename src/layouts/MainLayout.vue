@@ -8,7 +8,7 @@ export default defineComponent({
     const subTitleText = ref('Encontre os melhores profissionais de estética,\nagende com um toque, e compartilhe sua\nessência com o mundo.')
     const textListaVip = ref('Lista exclusiva. Sem spam, só beleza.')
     const textInitPage = ref('Rede Social da Beleza')
-    const subTextInitPage = ref(`Criado para quem entende que ${'<strong>tempo</strong>'} também é ${'<strong>autocuidado</strong>'}.`)
+    const subTextInitPage = ref(`Criado para quem entende que ${'<strong>tempo</strong>'} \ntambém é ${'<strong>autocuidado</strong>'}.`)
     const textUnderCards = ref('Mais de 1486 pessoas já garantiram sua vaga na lista VIP de download antecipado!')
     const textListaVipSecond = ref('Lista de download VIP')
     const textAccess = ref('Acesso antecipado à versão beta')
@@ -231,8 +231,9 @@ export default defineComponent({
     line-height: 26px;
     font-size: 1rem;
     margin-left: 0;
-    margin-bottom: 50px;
-    width: 130px;
+    margin-bottom: 40px;
+    width: 140px;
+    color: $primary;
 
     @media (min-width: 769px) {
       margin-left: 100px;
@@ -257,10 +258,6 @@ export default defineComponent({
     border-radius: 8px;
     border: 2px solid #AD9B8E;
     margin-bottom: 16px;
-
-    @media (min-width: 769px) {
-      height: 40px;
-    }
 
     label {
       width: 30px;
@@ -288,6 +285,7 @@ export default defineComponent({
     align-items: center;
     margin-top: 5px;
     margin-left: 0;
+    color: $primary;
 
     @media (min-width: 769px) {
       margin-left: 100px;
@@ -325,9 +323,11 @@ export default defineComponent({
     font-size: 1rem;
     color: $ligth-brown;
     margin-bottom: 16px;
+    white-space: pre-line;
 
     @media (min-width: 769px) {
       margin-bottom: 34px;
+      white-space: nowrap;
     }
   }
 }
@@ -349,9 +349,16 @@ export default defineComponent({
 .info-card {
   width: 202px;
   height: 194px;
-  border-radius: 20px;
-  border: 2px solid #AD9B8E;
-  background: linear-gradient(180deg, #FFF 0%, #FFF6EF 100%);
+  border: 3px solid transparent;
+  border-radius: 16px;
+  background: linear-gradient(white, #FFF6EF) padding-box,
+    linear-gradient(45deg, #AD9B8E, #E9DFD7, #AD9B8E, #E9DFD7) border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
 
   @media (min-width: 769px) {
     width: 212px;
@@ -453,7 +460,7 @@ export default defineComponent({
     justify-content: center;
     align-items: flex-start;
     gap: 54px;
-    margin: 70px 0 90px 0;
+    margin-bottom: 90px;
     padding: 0;
   }
 
@@ -518,7 +525,7 @@ export default defineComponent({
     padding: 0 20px;
 
     @media (min-width: 769px) {
-      width: 25rem;
+      padding: 0;
     }
 
     img {
