@@ -1,40 +1,34 @@
-# FireBeauty (lp-firebeauty)
+# FireBeauty - Rede Social da Beleza
 
-A Quasar Project
+![FireBeauty Logo](./src/assets/Logo%20horizontal%20preta%204.png)
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+Plataforma que conecta profissionais de estética a clientes, oferecendo agendamento simplificado, portfólios profissionais e geolocalização refinada.
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+## 🚀 Começando
 
+### Pré-requisitos
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+- Node.js (v16.x ou superior)
+- npm (v8.x ou superior) ou yarn
+- Quasar CLI instalado globalmente (`npm install -g @quasar/cli`)
 
+### Instalação
 
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
+1. Clone o repositório:
 
+   ```bash
+   git clone https://github.com/camilaplevi/LP-firebeauty.git
+   cd LP-firebeauty
 
-### Build the app for production
-```bash
-quasar build
-```
+   ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+2. npm install
+
+3. quasar dev
+
+### Tecnologias utilizadas
+
+- Framework Frontend: Quasar Framework (Vue.js 3)
+- Estilização: Sass/SCSS
+- Ícones: Material Icons
+- Build Tool: Vite
