@@ -38,7 +38,7 @@ export default defineConfig((/* ctx */) => {
         node: 'node20',
       },
 
-      publicPath: '/LP-firebeauty/',
+      publicPath: '/',
       vueRouterMode: 'hash',
     },
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
