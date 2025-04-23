@@ -3,6 +3,7 @@ import { ref, defineComponent, computed, onMounted } from 'vue';
 import { cardIcons } from 'src/assets/icons/CardsIcons'
 import { imagesContainer } from 'src/assets/images/Images'
 
+
 export default defineComponent({
   setup() {
     const titleText = ref('A beleza\ndo agora!')
@@ -15,6 +16,8 @@ export default defineComponent({
     const textAccess = ref('Acesso antecipado à versão beta')
     const textDescount = ref('Descontos nas primeiras propagandas dentro do aplicativo')
     const textMemberFounder = ref('Selo de membro fundadora no perfil')
+    const textPrivacy = ref('Política de privacidade')
+    const textDireitos = ref('Todos os direitos reservados por FireBeauty')
 
 
     const cards = ref([
@@ -82,7 +85,10 @@ export default defineComponent({
       textDescount,
       textMemberFounder,
       cards,
+      textPrivacy,
+      textDireitos,
       imagesContainer,
+
 
     }
   }
@@ -91,78 +97,82 @@ export default defineComponent({
 </script>
 
 <template>
+  <q-page class="page-content" style="background-color: #F3F3F3;">
+    <div class="hero-section" style="position: relative; width: 100%;">
+      <picture>
+        <source media="(max-width: 768px)" :srcset="imagesContainer.firstImageMobile">
+        <img :src="imagesContainer.firstImage" alt="Background" class="hero-image">
+      </picture>
 
-  <q-page-container class="page-container" style="padding-bottom: 0; background-color: #F3F3F3;">
-    <q-page class="page-content">
-      <div class="hero-section" style="position: relative; width: 100%;">
-        <picture>
-          <source media="(max-width: 768px)" :srcset="imagesContainer.firstImageMobile">
-          <img :src="imagesContainer.firstImage" alt="Background" class="hero-image">
-        </picture>
+      <div class="hero-content">
+        <h1 class="hero-title">{{ titleText }}</h1>
+        <p class="hero-subtitle">{{ subTitleText }}</p>
 
-        <div class="hero-content">
-          <h1 class="hero-title">{{ titleText }}</h1>
-          <p class="hero-subtitle">{{ subTitleText }}</p>
+        <q-form class="form-card">
+          <q-input outlined dense v-model="nome" class="form-input" label="Seu nome:" style="padding: 0;" />
+          <q-input outlined dense v-model="whatsapp" label="Seu WhatsApp:" mask="(##) #####-####" class="form-input" />
+          <q-btn label="Quero entrar na lista VIP!" class="form-button" />
+        </q-form>
 
-          <q-form class="form-card">
-            <q-input outlined dense v-model="nome" class="form-input" label="Seu nome:" style="padding: 0;" />
-            <q-input outlined dense v-model="whatsapp" label="Seu WhatsApp:" mask="(##) #####-####"
-              class="form-input" />
-            <q-btn label="Quero entrar na lista VIP!" class="form-button" />
-          </q-form>
+        <p class="form-disclaimer">
+          <q-icon name="mdi-lock" color="#AD9B8E" size="16px" class="q-mr-xs" />
+          {{ textListaVip }}
+        </p>
+      </div>
+    </div>
 
-          <p class="form-disclaimer">
-            <q-icon name="mdi-lock" color="#AD9B8E" size="16px" class="q-mr-xs" />
-            {{ textListaVip }}
-          </p>
-        </div>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="section-title">
+        <p class="main-title">{{ textInitPage }}</p>
+        <p class="sub-title" v-html="subTextInitPage"></p>
       </div>
 
-      <!-- Main Content -->
-      <div class="main-content">
-        <div class="section-title">
-          <p class="main-title">{{ textInitPage }}</p>
-          <p class="sub-title" v-html="subTextInitPage"></p>
-        </div>
-
-        <div class="cards-container">
-          <q-card class="info-card" v-for="(card, index) in cards" :key="index">
-            <q-card-section class="card-content">
-              <img :src="card.icon" alt="Ícone" class="card-icon">
-              <div class="card-text">
-                <p class="card-title">{{ card.title }}</p>
-                <p class="card-description">{{ card.subtitle }}</p>
-              </div>
-            </q-card-section>
-          </q-card>
-        </div>
-
-        <div class="under-cards-section">
-          <div class="decorative-rectangle"></div>
-          <p class="under-cards-text" v-html="formattedUnderCards"></p>
-        </div>
+      <div class="cards-container">
+        <q-card class="info-card" v-for="(card, index) in cards" :key="index">
+          <q-card-section class="card-content">
+            <img :src="card.icon" alt="Ícone" class="card-icon">
+            <div class="card-text">
+              <p class="card-title">{{ card.title }}</p>
+              <p class="card-description">{{ card.subtitle }}</p>
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
 
-      <!-- VIP Section -->
-      <div class="vip-section">
-        <div class="vip-image mobile-first">
-          <img :src="imagesContainer.lastImage" alt="Lista VIP">
-        </div>
+      <div class="under-cards-section">
+        <div class="decorative-rectangle"></div>
+        <p class="under-cards-text" v-html="formattedUnderCards"></p>
+      </div>
+    </div>
 
-        <div class="vip-content">
-          <p class="vip-title">{{ textListaVipSecond }}</p>
-          <ul class="vip-benefits">
-            <li>{{ textAccess }}</li>
-            <li>{{ textDescount }}</li>
-            <li>{{ textMemberFounder }}</li>
-          </ul>
-          <q-btn class="vip-button" label="Reservar meu lugar com exclusividade" />
-        </div>
+    <!-- VIP Section -->
+    <div class="vip-section">
+      <div class="vip-image mobile-first">
+        <img :src="imagesContainer.lastImage" alt="Lista VIP">
       </div>
 
-    </q-page>
-
-  </q-page-container>
+      <div class="vip-content">
+        <p class="vip-title">{{ textListaVipSecond }}</p>
+        <ul class="vip-benefits">
+          <li>{{ textAccess }}</li>
+          <li>{{ textDescount }}</li>
+          <li>{{ textMemberFounder }}</li>
+        </ul>
+        <q-btn class="vip-button" label="Reservar meu lugar com exclusividade" />
+      </div>
+    </div>
+    <q-footer class="page-footer" style="position: relative;">
+      <div class="footer-content">
+        <img :src="imagesContainer.logo" alt="Logo FireBeauty" class="footer-logo">
+        <p class="privacy-text">{{ textPrivacy }}</p>
+      </div>
+      <q-separator color="#D9D9D9" class="footer-separator" />
+      <div style="justify-content: center; display: flex;">
+        <p class="copyright-text">{{ textDireitos }}</p>
+      </div>
+    </q-footer>
+  </q-page>
 </template>
 
 <style lang="scss" scoped>
@@ -172,9 +182,10 @@ export default defineComponent({
     width: 100%;
     height: auto;
     object-fit: cover;
+    margin-top: 60px;
 
     @media (min-width: 769px) {
-      height: 630px;
+      height: 680px;
     }
   }
 
@@ -185,12 +196,12 @@ export default defineComponent({
     width: 90%;
     color: white;
     padding-top: 2.5rem;
-    padding: 35px 20px;
+    padding: 100px 20px;
 
     @media (min-width: 769px) {
       left: 8%;
       width: 600px;
-      padding-top: 80px;
+      padding-top: 140px;
 
     }
   }
@@ -232,10 +243,15 @@ export default defineComponent({
     border-radius: 18px;
     font-family: 'Poppins';
     padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    /* Largura máxima do formulário */
+    margin-left: 0;
 
     @media (min-width: 769px) {
-      margin: 1.75rem 0 0 6.25rem;
-      padding: 20px;
+      margin-left: 100px;
+      /* Mesmo alinhamento que outras seções */
+      width: 380px;
     }
   }
 
@@ -542,6 +558,67 @@ export default defineComponent({
       @media (min-width: 769px) {
         width: 450px;
       }
+    }
+  }
+}
+
+/*Footer*/
+.page-footer {
+  background-color: white;
+  height: auto;
+  padding: 1rem 0;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 0 1rem;
+
+    @media (min-width: 769px) {
+      flex-direction: row;
+      height: 80px;
+      padding: 0 100px;
+    }
+  }
+
+  .footer-logo {
+    width: 141px;
+    height: 49px;
+    margin: 0.5rem 0;
+
+    @media (min-width: 769px) {
+      margin-left: 100px;
+    }
+  }
+
+  .privacy-text {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: $tertiary;
+    margin: 0.5rem 0;
+
+    @media (min-width: 769px) {
+      padding-right: 100px;
+      font-size: 1rem;
+    }
+  }
+
+  .footer-separator {
+    margin: 0.5rem 0;
+  }
+
+  .copyright-text {
+    width: 230px;
+    font-family: 'Poppins';
+    color: $ligth-brown;
+    text-align: center;
+    padding: 0.5rem 0;
+
+    @media (min-width: 769px) {
+      width: auto;
     }
   }
 }
