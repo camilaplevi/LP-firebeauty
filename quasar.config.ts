@@ -38,50 +38,21 @@ export default defineConfig((/* ctx */) => {
         node: 'node20',
       },
 
-      typescript: {
-        strict: true,
-        vueShim: true,
-        // extendTsConfig (tsConfig) {}
-      },
-
-      publicPath: process.env.NODE_ENV === 'production' ? '/LP-firebeauty/' : '/',
-
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
-
+      publicPath: '/LP-firebeauty/',
+      vueRouterMode: 'hash',
       distDir: 'docs',
-      // vueRouterBase,
-      // vueDevtools,
-      // vueOptionsAPI: false,
 
-      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
+      // Adicione estas linhas:
+      emptyOutDir: false, // Importante para evitar o erro atual
+      minify: 'terser',
+      sourcemap: false,
 
-      // publicPath: '/',
-      // analyze: true,
-      // env: {},
-      // rawDefine: {}
-      // ignorePublicFolder: true,
-      // minify: false,
-      // polyfillModulePreload: true,
-      // distDir
-
-      // extendViteConf (viteConf) {},
-      // viteVuePluginOptions: {},
-
-      vitePlugins: [
-        [
-          'vite-plugin-checker',
-          {
-            vueTsc: true,
-            eslint: {
-              lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
-              useFlatConfig: true,
-            },
-          },
-          { server: false },
-        ],
-      ],
+      extendViteConf(viteConf, { isServer, isClient }) {
+        if (isClient) {
+          viteConf.base = '/LP-firebeauty/';
+        }
+      },
     },
-
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
       // https: true,
