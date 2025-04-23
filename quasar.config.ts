@@ -40,18 +40,6 @@ export default defineConfig((/* ctx */) => {
 
       publicPath: '/LP-firebeauty/',
       vueRouterMode: 'hash',
-      distDir: 'docs',
-
-      // Adicione estas linhas:
-      emptyOutDir: false, // Importante para evitar o erro atual
-      minify: 'terser',
-      sourcemap: false,
-
-      extendViteConf(viteConf, { isServer, isClient }) {
-        if (isClient) {
-          viteConf.base = '/LP-firebeauty/';
-        }
-      },
     },
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
