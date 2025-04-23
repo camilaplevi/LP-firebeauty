@@ -44,6 +44,8 @@ export default defineConfig((/* ctx */) => {
         // extendTsConfig (tsConfig) {}
       },
 
+      publicPath: process.env.NODE_ENV === 'production' ? '/LP-firebeauty/' : '/',
+
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
