@@ -39,7 +39,7 @@ export default defineConfig((/* ctx */) => {
       },
 
       publicPath: '/',
-      vueRouterMode: 'history',
+      vueRouterMode: 'hash',
       distDir: 'docs',
     },
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
