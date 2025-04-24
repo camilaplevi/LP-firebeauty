@@ -224,6 +224,10 @@ export default defineComponent({
     line-height: 1.2;
     white-space: pre-line;
 
+    @media (min-width: 600px) {
+      font-size: 5.6rem;
+    }
+
     @media (min-width: 769px) {
       font-size: 4.375rem;
       padding: 0 0 40px 100px;
@@ -239,23 +243,30 @@ export default defineComponent({
     font-size: 12px;
     margin-left: 0;
     margin-top: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 20%;
     line-height: 22px;
     width: 150px;
     color: $primary;
+
+    @media (min-width: 400px) {
+      font-size: 1.4rem;
+      width: 210px;
+      margin-top: 30px;
+      margin-bottom: 25%;
+    }
 
     @media (min-width: 500px) {
       font-size: 1.4rem;
       width: 210px;
       margin-top: 30px;
-      margin-bottom: 130px;
+      margin-bottom: 30%;
     }
 
     @media (min-width: 600px) {
       font-size: 1.6rem;
       width: 210px;
       margin-top: 30px;
-      margin-bottom: 130px;
+      margin-bottom: 30%;
     }
 
     @media (min-width: 769px) {
