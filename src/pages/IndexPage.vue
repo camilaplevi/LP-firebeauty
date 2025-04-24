@@ -278,7 +278,6 @@ export default defineComponent({
 
     @media (min-width: 769px) {
       margin-left: 100px;
-      /* Mesmo alinhamento que outras seções */
       width: 380px;
     }
   }
