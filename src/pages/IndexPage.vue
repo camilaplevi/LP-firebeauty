@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ref, defineComponent, computed, onMounted } from 'vue';
+import { ref, defineComponent, computed, onMounted, onUnmounted } from 'vue';
 import { cardIcons } from 'src/assets/icons/CardsIcons'
 import { imagesContainer } from 'src/assets/images/Images'
 
@@ -108,16 +108,20 @@ export default defineComponent({
         <h1 class="hero-title">{{ titleText }}</h1>
         <p class="hero-subtitle">{{ subTitleText }}</p>
 
-        <q-form class="form-card">
-          <q-input outlined dense v-model="nome" class="form-input" label="Seu nome:" style="padding: 0;" />
-          <q-input outlined dense v-model="whatsapp" label="Seu WhatsApp:" mask="(##) #####-####" class="form-input" />
-          <q-btn label="Quero entrar na lista VIP!" class="form-button" />
-        </q-form>
+        <div>
+          <q-form class="form-card">
+            <q-input outlined dense v-model="nome" class="form-input" label="Seu nome:" style="padding: 0;" />
+            <q-input outlined dense v-model="whatsapp" label="Seu WhatsApp:" mask="(##) #####-####"
+              class="form-input" />
+            <q-btn label="Quero entrar na lista VIP!" class="form-button" />
+          </q-form>
 
-        <p class="form-disclaimer">
-          <q-icon name="mdi-lock" color="#AD9B8E" size="16px" class="q-mr-xs" />
-          {{ textListaVip }}
-        </p>
+          <p class="form-disclaimer">
+            <q-icon name="mdi-lock" color="#AD9B8E" size="16px" class="q-mr-xs" />
+            {{ textListaVip }}
+          </p>
+        </div>
+
       </div>
     </div>
 
@@ -192,25 +196,31 @@ export default defineComponent({
   .hero-content {
     position: absolute;
     top: 0;
-    left: 5%;
-    width: 90%;
+    left: 0;
+    width: 100%;
+    height: 100%;
     color: white;
-    padding-top: 2.5rem;
-    padding: 100px 20px;
+    padding: 30% 12%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @media (min-width: 769px) {
-      left: 8%;
-      width: 600px;
-      padding-top: 140px;
+      left: 0;
+      right: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 30px;
 
     }
   }
 
   .hero-title {
     font-family: 'IvyMode';
-    font-size: 2.5rem;
+    font-size: calc(24px + 3.5vw);
     margin: 0;
-    padding: 0 0 1.25rem 0;
+    padding: 0;
     line-height: 1.2;
     white-space: pre-line;
 
@@ -226,14 +236,32 @@ export default defineComponent({
     white-space: pre-line;
     font-weight: 400;
     line-height: 26px;
-    font-size: 1rem;
+    font-size: 12px;
     margin-left: 0;
-    margin-bottom: 40px;
-    width: 140px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    line-height: 22px;
+    width: 150px;
     color: $primary;
 
+    @media (min-width: 500px) {
+      font-size: 1.4rem;
+      width: 210px;
+      margin-top: 30px;
+      margin-bottom: 130px;
+    }
+
+    @media (min-width: 600px) {
+      font-size: 1.6rem;
+      width: 210px;
+      margin-top: 30px;
+      margin-bottom: 130px;
+    }
+
     @media (min-width: 769px) {
+      font-size: 1.2rem;
       margin-left: 100px;
+      margin-bottom: 40px;
       width: auto;
     }
   }
@@ -244,9 +272,9 @@ export default defineComponent({
     font-family: 'Poppins';
     padding: 20px;
     width: 100%;
-    max-width: 400px;
-    /* Largura máxima do formulário */
+    max-width: 600px;
     margin-left: 0;
+
 
     @media (min-width: 769px) {
       margin-left: 100px;
@@ -349,8 +377,8 @@ export default defineComponent({
 }
 
 .info-card {
-  width: 202px;
-  height: 194px;
+  width: 242px;
+  height: 224px;
   border: 3px solid transparent;
   border-radius: 16px;
   background: linear-gradient(white, #FFF6EF) padding-box,
@@ -409,9 +437,9 @@ export default defineComponent({
 
   .card-title {
     color: $dark-brown;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 400;
-    line-height: 15px;
+    line-height: 20px;
     white-space: pre-line;
     margin: 0;
     padding-bottom: 0.3125rem;
@@ -425,8 +453,9 @@ export default defineComponent({
 
   .card-description {
     color: $tertiary;
-    font-size: 1rem;
-    line-height: 1.2rem;
+    font-size: 1.3rem;
+    line-height: 20px;
+    margin-top: 3px;
 
     @media (min-width: 769px) {
       font-size: 0.7rem;
@@ -438,7 +467,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin: 50px 50px 0;
 
   @media (min-width: 769px) {
     margin-top: 90px;
@@ -446,7 +475,7 @@ export default defineComponent({
 
   .decorative-rectangle {
     width: 1.0625rem;
-    height: 80px;
+    height: 100px;
     background: $ligth-brown;
     margin-right: 0.75rem;
     flex-shrink: 0;
@@ -458,8 +487,8 @@ export default defineComponent({
 
   .under-cards-text {
     font-family: 'Poppins';
-    width: 190px;
-    font-size: 1.25rem;
+    width: auto;
+    font-size: 1.55rem;
     font-weight: 600;
     color: $dark-brown;
     margin: 0;
@@ -499,8 +528,7 @@ export default defineComponent({
 
   .vip-content {
     order: 2;
-    width: 260px;
-    max-width: 430px;
+    width: 300px;
     margin-bottom: 50px;
 
     @media (min-width: 769px) {
@@ -538,6 +566,7 @@ export default defineComponent({
     line-height: 1.625rem;
     font-size: 1rem;
     color: $dark-brown;
+    width: 100%;
 
     @media (min-width: 769px) {
       width: 380px;
