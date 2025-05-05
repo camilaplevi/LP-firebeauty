@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ref, defineComponent, computed, onMounted, onUnmounted } from 'vue';
+import { ref, defineComponent, computed, onMounted } from 'vue';
 import { cardIcons } from 'src/assets/icons/CardsIcons'
 import { imagesContainer } from 'src/assets/images/Images'
 
@@ -62,6 +62,22 @@ export default defineComponent({
 
     const nome = ref('')
     const whatsapp = ref('')
+    const tipoUsuario = ref('')
+    const dropdownOpcoes = ['Profissional', 'Cliente']
+
+    const enviarFormulario = () => {
+      if (!nome.value || !whatsapp.value || !tipoUsuario.value) {
+        alert('Por favor, preencha todos os campos')
+        return
+      }
+
+      // Aqui você pode implementar o envio dos dados
+      console.log({
+        nome: nome.value,
+        whatsapp: whatsapp.value,
+        tipoUsuario: tipoUsuario.value
+      })
+    }
 
     const formattedUnderCards = computed(() => {
       return textUnderCards.value.replace(
@@ -88,7 +104,9 @@ export default defineComponent({
       textPrivacy,
       textDireitos,
       imagesContainer,
-
+      tipoUsuario,
+      dropdownOpcoes,
+      enviarFormulario
 
     }
   }
@@ -109,10 +127,12 @@ export default defineComponent({
         <p class="hero-subtitle">{{ subTitleText }}</p>
 
         <div>
-          <q-form class="form-card">
-            <q-input outlined dense v-model="nome" class="form-input" label="Seu nome:" style="padding: 0;" />
-            <q-input outlined dense v-model="whatsapp" label="Seu WhatsApp:" mask="(##) #####-####"
+          <q-form class="form-card" @submit.prevent="enviarFormulario">
+            <q-input outlined dense v-model="nome" class="form-input" label="Seu nome:" required style="padding: 0;" />
+            <q-input outlined dense v-model="whatsapp" label="Seu WhatsApp:" required mask="(##) #####-####"
               class="form-input" />
+            <q-select outlined dense v-model="tipoUsuario" :options="dropdownOpcoes" label="Você é:" class="form-input"
+              required />
             <q-btn label="Quero entrar na lista VIP!" class="form-button" />
           </q-form>
 
@@ -200,7 +220,7 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     color: white;
-    padding: 30% 12%;
+    padding: 25% 12%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -243,7 +263,6 @@ export default defineComponent({
     font-size: 12px;
     margin-left: 0;
     margin-top: 5px;
-    margin-bottom: 20%;
     line-height: 22px;
     width: 150px;
     color: $primary;
@@ -252,7 +271,6 @@ export default defineComponent({
       font-size: 1.4rem;
       width: 210px;
       margin-top: 30px;
-      margin-bottom: 25%;
     }
 
     @media (min-width: 500px) {
