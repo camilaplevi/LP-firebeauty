@@ -262,7 +262,7 @@ export default defineComponent({
     font-size: 12px;
     margin-left: 0;
     margin-top: 5px;
-    line-height: 22px;
+    line-height: 15px;
     width: 150px;
     color: $primary;
 
