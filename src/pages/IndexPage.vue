@@ -250,7 +250,7 @@ export default defineComponent({
 
     @media (min-width: 769px) {
       font-size: 4.375rem;
-      padding: 0 0 40px 100px;
+      padding: 0 0 10px 100px;
       line-height: 3.75rem;
     }
   }
@@ -259,7 +259,6 @@ export default defineComponent({
     font-family: 'Poppins';
     white-space: pre-line;
     font-weight: 400;
-    line-height: 26px;
     font-size: 12px;
     margin-left: 0;
     margin-top: 5px;
